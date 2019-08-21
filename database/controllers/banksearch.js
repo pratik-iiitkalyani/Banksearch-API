@@ -15,17 +15,15 @@ exports.create = function(data) {
 
 }
 
-var limit = 4
-var offset = 0
 
 // Handle view contact info
 exports.getBranch = function(query) {
+    console.log("@@@@@@@@@", query)
     return new Promise(function (resolve, reject) {
-        // var limit = query.limit;
-        // var offset = query.offset;
+        let limit = parseInt(query.limit)+1;
+        let offset = parseInt(query.offset);
 
-        // console.log("data", query);
-        let res = Banksearch.find({"branch":query.q}).sort({ifsc:1}).limit(1);
+        let res = Banksearch.find({"branch":query.q}).sort({ifsc:1}).limit(limit);
         // console.log("@@@@@@@@@@@", res)
             res.exec(function(err, res) {
             if (err) {
@@ -40,12 +38,10 @@ exports.getBranch = function(query) {
 // Handle view contact info
 exports.getBranch1 = function(query) {
     return new Promise(function (resolve, reject) {
-        // var limit = query.limit;
-        // var offset = query.offset;
+        let limit = parseInt(query.limit);
+        let offset = parseInt(query.offset);
 
-        // console.log("data", query);
-        let res = Banksearch.find({"branch":query.q}).sort({ifsc:1}).limit(1);
-        // console.log("@@@@@@@@@@@", res)
+        let res = Banksearch.find({"branch":query.q}).sort({ifsc:1}).limit(limit);
             res.exec(function(err, res) {
             if (err) {
                 reject(err);
