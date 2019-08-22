@@ -4,16 +4,8 @@
   "description": "Sample Project",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest --updateSnapshot",
-    "start": "node app.js",
-    "jest": "./node_modules/frisby/lib/frisby.js"
+    "start": "node app.js"
   },
-  "keywords": [
-    "chatbot",
-    "website",
-    "chatbot",
-    "nlp"
-  ],
   "author": "Pratik",
   "license": "ISC",
   "dependencies": {
