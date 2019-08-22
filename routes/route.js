@@ -9,6 +9,11 @@ const Banksearch = require('../database/controllers/banksearch');
 
 
 module.exports = (Router) => {
+    Router.route('/')
+        .get(async function(req, res) {
+            res.send("App is running.\nProvide route: '/api/branches?q=Bangalore&limit=4&offset=0' or \n'/api/branches/autocomplete?q=RTGS&limit=3&offset=0'")
+        });
+        
     //banksearch routes
     Router.route('/create')
         .post(async function(req, res) {
