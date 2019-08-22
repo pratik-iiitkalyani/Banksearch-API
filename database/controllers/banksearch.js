@@ -39,7 +39,7 @@ exports.getBranch1 = function(query) {
         let offset = parseInt(query.offset);
         let q = query.q.toUpperCase();
 
-        let res = Banksearch.find({"branch":q}).sort({ifsc:1}).limit(limit);
+        let res = Banksearch.find({"city": {'$regex' : '.*' + q + '.*'}}).sort({ifsc:1}).limit(limit);
             res.exec(function(err, res) {
             if (err) {
                 reject(err);
