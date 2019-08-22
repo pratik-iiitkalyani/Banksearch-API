@@ -1,41 +1,57 @@
-// import Express
-const Express = require("express");
+var app = require('express')(),
 
-// setup server port
-const Port = process.env.port || 5555;
+    Config = require("./config"),
+    helmet = require('helmet'),
+    { promisify } = require('util'),
+    dotenv = require('dotenv').config(),
+    port = process.env.PORT || Config.port,
+    ENV = process.env.NODE_ENV || Config.env,
+    bodyParser = require("body-parser")
 
-// import body parser
-const BodyParser = require("body-parser");
+    fs = require('fs');
 
-// import mongoose
-const Mongoose = require("mongoose");
-
-// Initialize the app
-const App= Express();
+    var path = require('path');
+    mongoose = require('mongoose')
 
 
-App.use(BodyParser.urlencoded ({
-    extended: false
+// handle cross domain issues - CORS
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, userId, Authorization, Accept,Content-Length, X-Requested-With, X-PINGOTHER');
+    if ('OPTIONS' === req.method) {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+};
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(allowCrossDomain);
+
+var server = require('http').Server(app),
+    io = require('socket.io')(server),
+    routes = require('./routes/route')(app, io)
+
+    require("./config/mongoose")(app)
+
+
+
+app.set("env", ENV);
+app.use(helmet({
+    frameguard: {
+        action: 'deny'
+    }
 }));
 
-// configuration of body parser to handle post request
-App.use(BodyParser.json());
 
-// connect to Mongoose
-Mongoose.connect("mongodb+srv://admin:admin@cluster0-2cqya.mongodb.net/Banksearch-API?retryWrites=true&w=majority",{useNewUrlParser : true});
-const Db = Mongoose.connection;
-
-// Use Api routes in the App
-const ApiRoutes = require("./routes/route")(App)
+app.get('/test', (req, res)=>{
+    res.json('test')
+})
 
 
-//setup the route for homepage
-App.get("/", (req, res) => {
-	// res.send("Hello!!");
-	res.send("Hello!!, Welcome to the Banksearch Application");
+server.listen(port, () => {
+    console.log('Server listening at', port)
 });
-
-//lunch api to listen on specified port
-App.listen(Port, (req, res) => {
-	console.log("server running on port" + " " + Port);
-});
+// WARNING: app.listen(80) will NOT work here!

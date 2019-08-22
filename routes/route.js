@@ -41,8 +41,9 @@ module.exports = (Router) => {
 
     Router.route('/api/branches')
         .get(async (req, res) => {
+            console.log("11111111111", req.query)
             try {
-                const Response = await Banksearch.getBranch1(req.query);
+                const Response = await Banksearch.getCity(req.query);
                 // console.log("response", Response)
                 res.send(Response)
             } catch (err) {

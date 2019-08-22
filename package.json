@@ -1,25 +1,48 @@
 {
-  "name": "banksearch-api",
+  "name": "dev-contract-terminator",
   "version": "1.0.0",
-  "description": "Creating a Banksearch API",
+  "description": "Contract terminator - website chatbot",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "./node_modules/.bin/jest --updateSnapshot",
+    "start": "node app.js",
+    "jest": "./node_modules/frisby/lib/frisby.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pratik-iiitkalyani/Banksearch-API.git"
-  },
-  "author": "Pratik",
+  "keywords": [
+    "chatbot",
+    "website",
+    "chatbot",
+    "nlp"
+  ],
+  "author": "ThoughtNext Technology",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pratik-iiitkalyani/Banksearch-API/issues"
-  },
-  "homepage": "https://github.com/pratik-iiitkalyani/Banksearch-API#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bunyan": "^1.8.12",
+    "config": "^3.0.1",
+    "cors": "2.8.5",
+    "dialogflow": "0.7.0",
+    "dotenv": "6.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.6.9",
-    "nodemon": "^1.19.1"
+    "frisby": "^2.1.2",
+    "fs": "0.0.1-security",
+    "helmet": "3.15.0",
+    "jasmine": "^3.4.0",
+    "jasmine-node": "^3.0.0",
+    "jest": "^24.8.0",
+    "jsonwebtoken": "^8.4.0",
+    "logger": "0.0.1",
+    "mollie-api-node": "^1.4.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.3",
+    "multer": "^1.4.2",
+    "nodemailer": "6.1.1",
+    "q": "^1.5.1",
+    "request": "^2.88.0",
+    "socket.io": "2.2.0",
+    "util": "0.11.1"
+  },
+  "devDependencies": {
+    "standard": "12.0.1"
   }
 }

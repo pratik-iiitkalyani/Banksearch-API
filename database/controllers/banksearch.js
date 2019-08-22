@@ -33,7 +33,7 @@ exports.getBranch = function(query) {
 
 
 // Handle view contact info
-exports.getBranch1 = function(query) {
+exports.getCity = function(query) {
     return new Promise(function (resolve, reject) {
         let limit = parseInt(query.limit);
         let offset = parseInt(query.offset);
@@ -42,9 +42,13 @@ exports.getBranch1 = function(query) {
         let res = Banksearch.find({"city": {'$regex' : '.*' + q + '.*'}}).sort({ifsc:1}).limit(limit);
             res.exec(function(err, res) {
             if (err) {
+                console.log("err", err)
                 reject(err);
-            }
+           
+            } else {
+                console.log("Res", res)
             resolve({branches: res.slice(offset, limit + offset)});
+        }
         })
     })
 }
