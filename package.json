@@ -1,7 +1,7 @@
 {
-  "name": "dev-contract-terminator",
+  "name": "BankSearch-API",
   "version": "1.0.0",
-  "description": "Contract terminator - website chatbot",
+  "description": "Sample Project",
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/.bin/jest --updateSnapshot",
@@ -14,33 +14,15 @@
     "chatbot",
     "nlp"
   ],
-  "author": "ThoughtNext Technology",
+  "author": "Pratik",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "bunyan": "^1.8.12",
     "config": "^3.0.1",
     "cors": "2.8.5",
-    "dialogflow": "0.7.0",
-    "dotenv": "6.2.0",
     "express": "^4.17.1",
-    "frisby": "^2.1.2",
-    "fs": "0.0.1-security",
     "helmet": "3.15.0",
-    "jasmine": "^3.4.0",
-    "jasmine-node": "^3.0.0",
-    "jest": "^24.8.0",
-    "jsonwebtoken": "^8.4.0",
-    "logger": "0.0.1",
-    "mollie-api-node": "^1.4.0",
-    "moment": "^2.24.0",
-    "mongoose": "^5.4.3",
-    "multer": "^1.4.2",
-    "nodemailer": "6.1.1",
-    "q": "^1.5.1",
-    "request": "^2.88.0",
-    "socket.io": "2.2.0",
-    "util": "0.11.1"
+    "mongoose": "^5.4.3"
   },
   "devDependencies": {
     "standard": "12.0.1"

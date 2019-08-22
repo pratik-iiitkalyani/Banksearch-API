@@ -2,8 +2,6 @@ var app = require('express')(),
 
     Config = require("./config"),
     helmet = require('helmet'),
-    { promisify } = require('util'),
-    dotenv = require('dotenv').config(),
     port = process.env.PORT || Config.port,
     ENV = process.env.NODE_ENV || Config.env,
     bodyParser = require("body-parser")
@@ -31,8 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(allowCrossDomain);
 
 var server = require('http').Server(app),
-    io = require('socket.io')(server),
-    routes = require('./routes/route')(app, io)
+    routes = require('./routes/route')(app)
 
     require("./config/mongoose")(app)
 
@@ -45,10 +42,6 @@ app.use(helmet({
     }
 }));
 
-
-app.get('/test', (req, res)=>{
-    res.json('test')
-})
 
 
 server.listen(port, () => {
