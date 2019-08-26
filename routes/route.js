@@ -35,8 +35,20 @@ module.exports = (Router) => {
 
     Router.route('/api/branches/autocomplete')
         .get(async (req, res) => {
+            var queryArray = Object.keys(req.query)
+            var data = []
+            var query = {}
+            
+            for(let value in req.query)
+                data.push(req.query[value])
+
+            var i = 0
+            for(let q of queryArray) {
+                query[q.toLowerCase()] = data[i]
+                i++;
+            }
             try {
-                const Response = await Banksearch.getBranch(req.query);
+                const Response = await Banksearch.getBranch(query);
                 // console.log("response", Response)
                 res.send(Response)
             } catch (err) {
@@ -61,8 +73,6 @@ module.exports = (Router) => {
                 query[q.toLowerCase()] = data[i]
                 i++;
             }
-
-            console.log("Final Query", query)
 
             try {
                 const Response = await Banksearch.getCity(query);

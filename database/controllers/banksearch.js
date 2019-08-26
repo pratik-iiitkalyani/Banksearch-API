@@ -21,7 +21,9 @@ exports.getBranch = function(query) {
         let limit = parseInt(query.limit)+1;
         let offset = parseInt(query.offset);
 
-        let res = Banksearch.find({"branch": {'$regex' : '.*' + query.q + '.*'}}).sort({ifsc:1}).limit(limit);
+        let q = query.q.toUpperCase();
+
+        let res = Banksearch.find({"branch": {'$regex' : '.*' + q + '.*'}}).sort({ifsc:1}).limit(limit);
             res.exec(function(err, res) {
             if (err) {
                 reject(err);
@@ -35,6 +37,7 @@ exports.getBranch = function(query) {
 // Handle view contact info
 exports.getCity = function(query) {
     return new Promise(function (resolve, reject) {
+        console.log("#####", query)
         let limit = parseInt(query.limit);
         let offset = parseInt(query.offset);
         let q = query.q.toUpperCase();
