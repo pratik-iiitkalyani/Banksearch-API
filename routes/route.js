@@ -9,12 +9,14 @@ const Banksearch = require('../database/controllers/banksearch');
 
 
 module.exports = (Router) => {
+    //banksearch routes
+
     Router.route('/')
         .get(async function(req, res) {
             res.send("App is running.\nProvide route: '/api/branches?q=Bangalore&limit=4&offset=0' or \n'/api/branches/autocomplete?q=RTGS&limit=3&offset=0'")
         });
-        
-    //banksearch routes
+
+
     Router.route('/create')
         .post(async function(req, res) {
             console.log('request', req.body);
@@ -35,6 +37,7 @@ module.exports = (Router) => {
         .get(async (req, res) => {
             try {
                 const Response = await Banksearch.getBranch(req.query);
+                // console.log("response", Response)
                 res.send(Response)
             } catch (err) {
                 res.send("error")
@@ -45,8 +48,25 @@ module.exports = (Router) => {
 
     Router.route('/api/branches')
         .get(async (req, res) => {
+
+            var queryArray = Object.keys(req.query)
+            var data = []
+            var query = {}
+            
+            for(let value in req.query)
+                data.push(req.query[value])
+
+            var i = 0
+            for(let q of queryArray) {
+                query[q.toLowerCase()] = data[i]
+                i++;
+            }
+
+            console.log("Final Query", query)
+
             try {
-                const Response = await Banksearch.getCity(req.query);
+                const Response = await Banksearch.getCity(query);
+                // console.log("response", Response)
                 res.send(Response)
             } catch (err) {
                 res.send("error")
