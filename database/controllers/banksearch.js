@@ -37,7 +37,6 @@ exports.getBranch = function(query) {
 // Handle view contact info
 exports.getCity = function(query) {
     return new Promise(function (resolve, reject) {
-        console.log("#####", query)
         let limit = parseInt(query.limit);
         let offset = parseInt(query.offset);
         let q = query.q.toUpperCase();

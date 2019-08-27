@@ -49,7 +49,6 @@ module.exports = (Router) => {
             }
             try {
                 const Response = await Banksearch.getBranch(query);
-                // console.log("response", Response)
                 res.send(Response)
             } catch (err) {
                 res.send("error")
@@ -76,7 +75,6 @@ module.exports = (Router) => {
 
             try {
                 const Response = await Banksearch.getCity(query);
-                // console.log("response", Response)
                 res.send(Response)
             } catch (err) {
                 res.send("error")
